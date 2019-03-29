@@ -1,0 +1,38 @@
+Structure
+  Switch Nav
+    Auth
+    Home
+  
+  Home
+    displays folders and files
+    create folder
+    button to navigate to camera, audio record, video record, add files
+  
+  camera
+    photo
+      photo options: switch view, flash, focus, white balance, etc and cancel
+      video options: show time elapsed, flash
+  audio
+    
+
+Functionality
+  photos 
+    take photo
+    select a photo from camera roll
+    extract text
+    edit text
+    save to database
+    display in a template that's printable
+  audio
+    record audio
+    extract text
+    edit text
+    save to database
+  folders
+    create folders
+    edit folder name
+    delete folder
+    add files to folder
+
+
+  
