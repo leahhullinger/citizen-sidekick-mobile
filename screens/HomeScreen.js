@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  StatusBar
 } from "react-native";
 import {
   Container,
@@ -18,7 +19,13 @@ import {
   Button,
   Icon
 } from "native-base";
-import { WebBrowser, Permissions, Camera, Audio_recording } from "expo";
+import {
+  WebBrowser,
+  Permissions,
+  Camera,
+  ImagePicker,
+  Audio_recording
+} from "expo";
 // import Icon from "@expo/vector-icons/Ionicons";
 
 import { colors } from "../styles";
@@ -28,12 +35,27 @@ import { colors } from "../styles";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    headerStyle: {
+      backgroundColor: colors.primary.main
+    }
   };
+  state = {
+    hasCameraPermission: null
+  };
+  componentDidMount = async () => {
+    const camera = await Permissions.askAsync(Permissions.CAMERA);
+    const cameraRoll = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    const hasCameraPermission =
+      camera.status === "granted" && cameraRoll.status === "granted";
+    this.setState({
+      hasCameraPermission
+    });
+  };
+
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: colors.primary.main }}>
+        {/* <Header style={{ backgroundColor: colors.primary.main }}>
           <Left>
             <Icon
               type="AntDesign"
@@ -41,7 +63,7 @@ export default class HomeScreen extends React.Component {
               style={{ color: "white" }}
             />
           </Left>
-        </Header>
+        </Header> */}
         <Content>
           <Text>this is content</Text>
         </Content>
@@ -57,7 +79,9 @@ export default class HomeScreen extends React.Component {
                 style={{ size: 40, color: colors.secondary.main }}
               />
             </Button>
-            <Button>
+            <Button
+              onPress={() => this.props.navigation.navigate("CameraRoll")}
+            >
               <Icon type="MaterialIcons" name="photo-library" />
             </Button>
           </FooterTab>

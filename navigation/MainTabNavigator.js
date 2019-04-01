@@ -8,17 +8,23 @@ import {
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import CameraScreen from "../screens/CameraScreen";
+import CameraRoll from "../components/CameraRoll";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  CameraRoll: CameraRoll,
   Camera: CameraScreen
 });
+HomeStack.navigationOptions = {
+  header: null
+};
 
 const CameraStack = createStackNavigator({
   Camera: CameraScreen
 });
 
 CameraStack.navigationOptions = {
+  header: null,
   tabBarLabel: "Camera",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
