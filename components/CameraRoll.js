@@ -1,16 +1,14 @@
 import React from "react";
+import { createStackNavigator } from "react-navigation";
 import { ImagePicker } from "expo";
 import { Container, Header, Content, Text, Button, Icon } from "native-base";
+
 import { UploadCard } from "./UploadCard";
 
-export default class CameraRoll extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      image: null
-    };
-  }
+class CameraRoll extends React.Component {
+  state = {
+    image: null
+  };
 
   componentDidMount = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -51,3 +49,7 @@ export default class CameraRoll extends React.Component {
     }
   }
 }
+
+export default createStackNavigator({
+  CameraRoll: CameraRoll
+});

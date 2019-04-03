@@ -5,36 +5,78 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
-import TabBarIcon from "../components/TabBarIcon";
-import HomeScreen from "../screens/HomeScreen";
+import Dashboard from "../screens/Dashboard";
+import UploadScreen from "../screens/UploadScreen";
 import CameraScreen from "../screens/CameraScreen";
 import CameraRoll from "../components/CameraRoll";
+import { Icon } from "native-base";
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-  CameraRoll: CameraRoll,
-  Camera: CameraScreen
-});
-HomeStack.navigationOptions = {
-  header: null
-};
+// for tabNavigator: audio, add icon in center (uploads), and camera on right
 
-const CameraStack = createStackNavigator({
-  Camera: CameraScreen
-});
+// const DashboardStack = createStackNavigator(
+//   {
+//     Dashboard: Dashboard,
+//     Camera: CameraScreen,
+//     CameraRoll: CameraRoll,
+//     Upload: UploadScreen
+//   },
+//   {
+//     initialRouteName: "Dashboard"
+//   }
+// );
 
-CameraStack.navigationOptions = {
-  header: null,
-  tabBarLabel: "Camera",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-camera" : "md-camera"}
-    />
-  )
-};
+const MainTabNavigator = createBottomTabNavigator(
+  {
+    Dashboard: {
+      screen: Dashboard,
+      navigationOptions: {
+        tabBarLabel: "Dashboard",
+        tabBarIcon: ({ focused }) => (
+          <Icon type="MaterialIcons" name="dashboard" />
+        )
+      }
+    },
+    Camera: {
+      screen: CameraScreen,
+      navigationOptions: {
+        tabBarLabel: "Camera",
+        tabBarIcon: ({ focused }) => (
+          <Icon type="MaterialIcons" name="photo-camera" />
+        )
+      }
+    },
+    Upload: {
+      screen: UploadScreen,
+      navigationOptions: {
+        tabBarLabel: "new info",
+        tabBarIcon: ({ focused }) => (
+          <Icon type="MaterialIcons" name="add-circle-outline" />
+        )
+      }
+    }
+    // CameraRoll: {
+    //   screen: CameraRollStack,
+    //   navigationOptions: {
+    //     tabBarLabel: "Library",
+    //     tabBarIcon: ({ focused }) => (
+    //       <Icon type="MaterialIcons" name="photo-library" />
+    //     )
+    //   }
+    // }
+  }
+  // {
+  //   initialRouteName: "Dashboard"
+  // }
+);
 
-export default createStackNavigator({
-  HomeStack,
-  CameraStack
-});
+// CameraRollStack.navigationOptions = {
+//   tabBarLabel: "Photo Library",
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === "ios" ? "ios-options" : "md-options"}
+//     />
+//   )
+// };
+
+export default MainTabNavigator;

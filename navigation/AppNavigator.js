@@ -5,17 +5,17 @@ import {
   createStackNavigator
 } from "react-navigation";
 
-import MainTabNavigator from "./MainTabNavigator";
 import SignUpScreen from "../screens/auth/SignUpScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
 import AuthLoadingScreen from "../screens/auth/AuthLoadingScreen";
+import MainTabNavigator from "./MainTabNavigator";
 
 const AuthStack = createStackNavigator({
   signUp: SignUpScreen,
   signIn: SignInScreen
 });
 
-export default createAppContainer(
+const AppNavigator = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
@@ -27,3 +27,5 @@ export default createAppContainer(
     }
   )
 );
+
+export default AppNavigator;

@@ -1,4 +1,5 @@
 import React from "react";
+import { createStackNavigator } from "react-navigation";
 import { Text, View, TouchableOpacity } from "react-native";
 import {
   Container,
@@ -13,7 +14,7 @@ import {
 import { Camera, MediaLibrary, Permissions } from "expo";
 import { colors } from "../styles";
 
-export default class CameraScreen extends React.Component {
+class CameraScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
@@ -173,3 +174,7 @@ export default class CameraScreen extends React.Component {
     }
   }
 }
+
+export default createStackNavigator({
+  Camera: CameraScreen
+});
